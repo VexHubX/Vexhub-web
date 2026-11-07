@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0b0d12">
+  <meta
+    name="description"
+    content="Momentum is a simple, focused daily planner."
+  >
+  <title>Momentum — Daily Planner</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" aria-label="Task filters">
+      <a class="brand" href="#" aria-label="Momentum home">
+        <span class="brand-mark" aria-hidden="true">M</span>
+        <span>momentum</span>
+      </a>
+
+      <p class="sidebar-label">WORKSPACE</p>
+      <nav class="filter-nav" aria-label="Filter tasks">
+        <button class="filter-button is-active" type="button" data-filter="all" aria-pressed="true">
+          <span class="nav-icon" aria-hidden="true">◷</span>
+          <span>All tasks</span>
+          <span class="nav-count" id="all-count">0</span>
+        </button>
+        <button class="filter-button" type="button" data-filter="active" aria-pressed="false">
+          <span class="nav-icon" aria-hidden="true">◯</span>
+          <span>In progress</span>
+          <span class="nav-count" id="active-count">0</span>
+        </button>
+        <button class="filter-button" type="button" data-filter="completed" aria-pressed="false">
+          <span class="nav-icon" aria-hidden="true">✓</span>
+          <span>Completed</span>
+          <span class="nav-count" id="completed-count">0</span>
+        </button>
+      </nav>
+
+      <div class="sidebar-note">
+        <span class="note-sparkle" aria-hidden="true">✦</span>
+        <p class="note-title">Make room for focus.</p>
+        <p class="note-copy">One small step at a time adds up to big things.</p>
+      </div>
+
+      <div class="sidebar-footer">
+        <span class="status-dot" aria-hidden="true"></span>
+        Your tasks are saved on this device
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <header class="topbar">
+        <p class="date-label" id="today-date"></p>
+        <div class="topbar-right">
+          <span class="local-badge"><span aria-hidden="true">●</span> Personal workspace</span>
+          <span class="avatar" aria-label="Your profile">Y</span>
+        </div>
+      </header>
+
+      <section class="welcome-section" aria-labelledby="page-title">
+        <div>
+          <p class="eyebrow">YOUR DAY, YOUR PACE</p>
+          <h1 id="page-title">A little progress<br>goes a long way<span class="heading-period">.</span></h1>
+          <p class="welcome-copy">Keep your focus on what matters today.</p>
+        </div>
+
+        <div class="progress-card" aria-live="polite">
+          <div class="progress-topline">
+            <span class="progress-label">Daily progress</span>
+            <span class="progress-value" id="progress-value">0%</span>
+          </div>
+          <div
+            class="progress-track"
+            id="progress-track"
+            role="progressbar"
+            aria-label="Daily task progress"
+            aria-valuemin="0"
+            aria-valuemax="100"
+            aria-valuenow="0"
+          >
+            <span class="progress-fill" id="progress-fill"></span>
+          </div>
+          <p class="progress-caption" id="progress-caption">Add a task to get started</p>
+        </div>
+      </section>
+
+      <section class="tasks-section" aria-labelledby="tasks-heading">
+        <div class="section-heading">
+          <div>
+            <h2 id="tasks-heading">Your tasks</h2>
+            <p class="section-subtitle" id="task-summary">A clear mind starts with a clear list.</p>
+          </div>
+          <button class="text-button" id="clear-completed" type="button" disabled>
+            Clear completed
+          </button>
+        </div>
+
+        <form class="add-task-form" id="task-form">
+          <label class="sr-only" for="task-input">New task</label>
+          <span class="input-plus" aria-hidden="true">＋</span>
+          <input
+            id="task-input"
+            name="task"
+            type="text"
+            maxlength="120"
+            placeholder="What would you like to get done?"
+            autocomplete="off"
+            required
+          >
+          <label class="sr-only" for="task-category">Task category</label>
+          <select id="task-category" name="category">
+            <option value="Personal">Personal</option>
+            <option value="Work">Work</option>
+            <option value="Ideas">Ideas</option>
+          </select>
+          <button class="add-button" type="submit">
+            <span aria-hidden="true">＋</span> Add task
+          </button>
+        </form>
+
+        <div class="task-toolbar">
+          <label class="search-box">
+            <span aria-hidden="true">⌕</span>
+            <span class="sr-only">Search tasks</span>
+            <input id="search-input" type="search" placeholder="Search tasks..." autocomplete="off">
+            <kbd>/</kbd>
+          </label>
+          <span class="task-count" id="visible-count">0 tasks</span>
+        </div>
+
+        <div class="task-list" id="task-list" aria-live="polite"></div>
+      </section>
+
+      <footer class="main-footer">
+        <span>Small steps. Steady momentum.</span>
+        <span>Made for your focus <span class="footer-heart" aria-hidden="true">♥</span></span>
+      </footer>
+    </main>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>
